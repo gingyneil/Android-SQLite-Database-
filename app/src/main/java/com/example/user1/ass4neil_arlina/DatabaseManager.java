@@ -1,5 +1,6 @@
 package com.example.user1.ass4neil_arlina;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class DatabaseManager extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "Patient DB";
+    private static final String DATABASE_NAME = "Patient.DB";
     private static final int DATABASE_VERSION = 1;
     //
     private String tables[]; //table names
@@ -34,19 +35,46 @@ public class DatabaseManager extends SQLiteOpenHelper {
         this.tableCreatorString=tableCreatorString;
     }
 
+    // Create tables
     @Override
     public void onCreate(SQLiteDatabase db) {
-
         // Drop existing tables
         for (int i=0;i<tables.length;i++)
             db.execSQL("DROP TABLE IF EXISTS " + tables[i]);
-
-
         //create them
         for (int i=0;i<tables.length;i++)
             db.execSQL(tableCreatorString[i]);
 
+    }
 
+    //create the database
+    @SuppressLint("WrongConstant")
+    public void createDatabase(Context context)
+    {
+        SQLiteDatabase mDatabase;
+        mDatabase = context.openOrCreateDatabase(
+                DATABASE_NAME,
+                SQLiteDatabase.CREATE_IF_NECESSARY,
+                null);
+
+    }
+
+    //delete the database
+    public void deleteDatabase(Context context)
+    {
+        context.deleteDatabase(DATABASE_NAME);
+    }
+
+    // Upgrading database
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        // Drop existing tables
+        for (int i=0;i<tables.length;i++)
+            db.execSQL("DROP TABLE IF EXISTS " + tables[i]);
+
+        // Create tables again
+        onCreate(db);
+    }
     /*    // SQL statement to create all tables
         String CREATE_Patient_TABLE = "CREATE TABLE Patient ( " +
                 "id INTEGER PRIMARY KEY, " +
@@ -80,16 +108,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
 
 
-    }
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Drop existing tables
-        for (int i=0;i<tables.length;i++)
-            db.execSQL("DROP TABLE IF EXISTS " + tables[i]);
 
-        // Create tables again
-        onCreate(db);
-    }
+
 
     /////////////////////////
     // Database operations
@@ -131,11 +151,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         return table;
     }
 
-    //delete the database
-    public void deleteDatabase(Context context)
-    {
-        context.deleteDatabase(DATABASE_NAME);
-    }
+    
 
 
 

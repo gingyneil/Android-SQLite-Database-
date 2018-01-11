@@ -6,17 +6,9 @@ package com.example.user1.ass4neil_arlina;
 
 public class Test {
 
-    private int testId;
-    private int patientId;
-    private int nurseId;
-    private int BPL;
-    private int BPH;
-    private int temp;
+    public  Test(){}
 
-
-    public Test(){}
-
-    public Test(int testId, int patientId, int nurseId, int BPL, int BPH, int temp) {
+    public Test(String testId, String patientId, String nurseId, String BPL, String BPH, String temp) {
         this.testId = testId;
         this.patientId = patientId;
         this.nurseId = nurseId;
@@ -25,52 +17,62 @@ public class Test {
         this.temp = temp;
     }
 
-    public int getTestId() {
+    public String getTestId() {
 
         return testId;
     }
 
-    public void setTestId(int testId) {
+    public void setTestId(String testId) {
         this.testId = testId;
     }
 
-    public int getPatientId() {
+    public String getPatientId() {
         return patientId;
     }
 
-    public void setPatientId(int patientId) {
+    public void setPatientId(String patientId) {
         this.patientId = patientId;
     }
 
-    public int getNurseId() {
+    public String getNurseId() {
         return nurseId;
     }
 
-    public void setNurseId(int nurseId) {
+    public void setNurseId(String nurseId) {
         this.nurseId = nurseId;
     }
 
-    public int getBPL() {
+    public String getBPL() {
         return BPL;
     }
 
-    public void setBPL(int BPL) {
+    public void setBPL(String BPL) {
         this.BPL = BPL;
     }
 
-    public int getBPH() {
+    public String getBPH() {
         return BPH;
     }
 
-    public void setBPH(int BPH) {
+    public void setBPH(String BPH) {
         this.BPH = BPH;
     }
 
-    public int getTemp() {
+    public String getTemp() {
         return temp;
     }
 
-    public void setTemp(int temp) {
+    public void setTemp(String temp) {
         this.temp = temp;
     }
+
+    private String testId;
+    private String patientId;
+    private String nurseId;
+    private String BPL;
+    private String BPH;
+    private String temp;
+
+
+
 }
